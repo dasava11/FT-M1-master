@@ -10,9 +10,92 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
   search(isEven), donde isEven es una función que retorna true cuando recibe por parámetro un número par, busca un nodo cuyo valor sea un número par.
   En caso de que la búsqueda no arroje resultados, search debe retornar null.
 */
-function LinkedList() {}
+function LinkedList() {
+  this.head = null;
+  this._length = 0;
+}
 
-function Node(value) {}
+function Node(value) {
+  this.value = value;
+  this.next = null;
+}
+
+//ADD
+LinkedList.prototype.add = function(value){
+let node = new Node(value);
+let current = this.head;
+
+if(!current){
+  this.head = node;
+  this._length++
+  return node;
+}
+
+while (current.next) {
+  current = current.next;
+}
+current.next = node
+this._length++
+return node;
+};
+
+//REMOVE
+LinkedList.prototype.remove = function(){
+if(this.head === null) return null;
+
+if(this._length === 1){
+  let aux = this.head;
+  this.head = null;
+  this._length--
+  return aux.value;
+}
+// TENGO QUE RECORRER
+let current = this.head;
+while (current.next.next) {
+  current = current.next;
+}
+let aux1 = current.next.value;
+current.next = null;
+this._length--;
+return aux1;
+};
+
+//SEARCH
+LinkedList.prototype.search = function(value){
+if(this.head === null) return null;
+let current1 = this.head;
+
+while (current1) {
+  if(typeof value === 'function' && value(current1.value) === true){
+    return current1.value;
+  } else if (value === current1.value) return value;
+  current1 = current1.next;
+}
+return null;
+};
+
+// COMBINATION
+
+LinkedList.prototype.combination = function(lista1, lista2){
+  let arr = [lista1.head.value, lista2.head.value];
+let current = lista1.head;
+let current2 = lista2.head 
+
+while (!current2) {
+  arr.push(current.lista1.value);
+  arr.push(current2.lista2.value);
+  current2 = current2.next;
+  current = current.next
+}
+
+let listaFusion = new LinkedList();
+
+for (let i = 0; i < arr.length; i++) {
+  listaFusion.add(arr[i]);
+  
+}
+}
+
 
 /* EJERCICIO 2
 Implementar la clase HashTable.
