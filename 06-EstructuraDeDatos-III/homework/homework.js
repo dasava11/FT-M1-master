@@ -23,14 +23,14 @@ class BinarySearchTree {
          if (this.right !== null) {
             this.right.insert(value);
          } else {
-            this.right = new BinarySearchTree(value);
+            this.right = bst;
          };
    
       } else if (value < this.value) {
          if (this.left !== null) {
             this.left.insert(value);
          } else {
-            this.left = new BinarySearchTree(value);
+            this.left = bst;
          };
       };
    
@@ -46,43 +46,51 @@ class BinarySearchTree {
             return this.right.contains(value);
          };
       } else if (value < this.value) {
-         if (!this.left) {
-            return false;
-         } else {
-         return this.left.contains(value);
-         };
+         if (!this.left) return false;
+         else return this.left.contains(value);
       };
+
    };
 
-   depthFirstForEach(value){
+   depthFirstForEach(cb, order){
 
-      if (value === undefined || value === "in-order") {
+      if (order === undefined || order === "in-order") { // left - root - right
          
+         if (this.left !== null) this.left.depthFirstForEach(cb, order);
+         cb(this.value);
+         if (this.right !== null) this.right.depthFirstForEach(cb, order);
    
-      } else if (value === "pre-order") {
-         
-   
-   
-      } else if (value === "post-order") {
-         
-   
+      } else if (order === "pre-order") { // root - left - right
+
+         cb(this.value);
+         if (this.left !== null) this.left.depthFirstForEach(cb, order);
+         if (this.right !== null) this.right.depthFirstForEach(cb, order);
+
+      } else if (order === "post-order") { // left - right - root
+
+         if (this.left !== null) this.left.depthFirstForEach(cb, order);
+         if (this.right !== null) this.right.depthFirstForEach(cb, order);
+         cb(this.value);
    
       } else {
          return 'Opcion no valida'
       }
    };
 
-   breadthFirstForEach(){
-
+   breadthFirstForEach(cb, array = []){
+      cb(this.value);
+      if(this.right) array.push(this.right);
+      if(this.left) array.push(this.left);
+      if(array.length > 0) arr.shift().breadthFirstForEach(cb, array);
    };
 
    size() {
-      if(this.right === null && this.left === null) return 1;
+      if(!this.right && !this.left) return 1;
    
-      if (this.right !== null && this.left === null) {
+      if (this.right && !this.left) {
          return 1 + this.right.size();
       }
-      if (this.right === null && this.left !== null) {
+      if (!this.right && this.left) {
          return 1 + this.left.size();
       }
       if (this.right !== null && this.left !== null) {
@@ -90,16 +98,6 @@ class BinarySearchTree {
       }
    };
 }
-
-
-
-
-
-
-
-
-
-
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

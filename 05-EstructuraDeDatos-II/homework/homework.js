@@ -49,7 +49,7 @@ if(this._length === 1){
   this._length--
   return aux.value;
 }
-// TENGO QUE RECORRER
+// tengo que recorrer
 let current = this.head;
 while (current.next.next) {
   current = current.next;
@@ -96,6 +96,13 @@ for (let i = 0; i < arr.length; i++) {
 }
 }
 
+// MIRAR METODO PARA AÑADIR EN INTERMEDIO
+
+var listOne = new LinkedList()
+
+listOne.add(1);
+listOne.add('dos');
+listOne.add('hola');
 
 /* EJERCICIO 2
 Implementar la clase HashTable.
