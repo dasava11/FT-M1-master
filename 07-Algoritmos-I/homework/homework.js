@@ -67,19 +67,18 @@ function insertionSort(array) {
    3. se invierten los [i] una vez se identifique el menor entre todos los [i]
    4. avanza [i++] y vuelve hacer la misma validación */
 
-let arr = [];
-for (let i = 0; i < array.length; i++) {
-  for (let j = 1; j < array.length; j++) {
-    let aux;
-    if(array[j] < array[i]) {
-      aux = array[j];
-      arr.push(array[j])
-    }
-  };
-  arr[i] = aux
- };
- return arr;
-};
+   for (let i = 1; i < array.length; i++) {
+  
+     for (let j = 0; j < array.length; j++) {
+       if(array[j] > array[i]) {
+        var aux = array[j];
+         array[j] = array[i];
+         array[i] = aux;
+       }
+     };
+    };
+    return array;
+   };
 // if (min < array[j]) {
 //   let aux = array[j];
 //   array[j] = array[i+1];
