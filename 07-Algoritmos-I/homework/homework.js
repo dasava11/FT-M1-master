@@ -1,22 +1,39 @@
 'use strict'
 // No cambies los nombres de las funciones.
 
+function primo(numero) {
+
+  for (var i = 2; i < numero; i++) {
+    if (numero % i === 0) {
+      return false;
+    }
+  }
+  return numero !== 1;
+;}
+
 function factorear(num) {
   // Factorear el número recibido como parámetro y devolver en un array
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
   let array = [1];
-  let div =[13, 11, 7, 5, 3, 2];
- 
-  for (let i = 0; i < div.length; i++) {
-  while (num !== 1) {
-    if (num%div[i] === 0) {
-      array.push(div[i])
-      num = num/div[i]
-    }
-  }
-  }
+// let div =[2, 3, 5, 7, 11, 13];
+ let i=2
+  //for (let i = 0; i < div.length; i++) {
+    //console.log(num, div[i], num/div[i]);
+    while (num !== 1) {
+      if(primo(i)){
+          if (num%i === 0) {
+            array.push(i)
+            num = num/i
+          } else {
+            i++;
+          };
+      }else{
+        i++;
+      };
+    };
+  
 return array;
 
 };
@@ -27,27 +44,17 @@ function bubbleSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
-//   let max = array[0]
-//   let min = array[0]
-
-//   for (let i = 0; i < array.length; i++) {
-//     if (array[i] > max) max = array[i]
-//     if (array[i] < min) min = array[i]
-//   }
- 
-//   while (array[0] !== min && array[array.length] !== max) {
-//     let j = 0
-//     if (array[j] > array[j+1]) {
-//       let aux = array[j+1];
-//       array[j] = array[j+1];
-//       array[j+1] = aux;
-//     }
-//     j++
-//   }
-// return array;
-
+ for (let j = array.length; j > 0; j--) {
+  for (let i = 0; i < j; i++) {
+    if (array[i] > array[i+1]) {
+      let aux = array[i];
+      array[i] = array[i+1];
+      array[i+1] = aux;
+    };
+  };
+ };
+ return array;
 }
-
 
 function insertionSort(array) {
   // Implementar el método conocido como insertionSort para ordenar de menor a mayor
@@ -60,8 +67,23 @@ function insertionSort(array) {
    3. se invierten los [i] una vez se identifique el menor entre todos los [i]
    4. avanza [i++] y vuelve hacer la misma validación */
 
-
-}
+let arr = [];
+for (let i = 0; i < array.length; i++) {
+  for (let j = 1; j < array.length; j++) {
+    let aux;
+    if(array[j] < array[i]) {
+      aux = array[j];
+      arr.push(array[j])
+    }
+  };
+  arr[i] = aux
+ };
+ return arr;
+};
+// if (min < array[j]) {
+//   let aux = array[j];
+//   array[j] = array[i+1];
+//   array[i+1] = aux;
 
 
 function selectionSort(array) {
@@ -80,7 +102,6 @@ function selectionSort(array) {
   //     array[i] = array[i+1];
   //     array[i+1] = aux;
   //  }
-
 
 }
 
