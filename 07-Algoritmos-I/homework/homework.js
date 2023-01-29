@@ -68,22 +68,19 @@ function insertionSort(array) {
    4. avanza [i++] y vuelve hacer la misma validación */
 
    for (let i = 1; i < array.length; i++) {
-  
+     
      for (let j = 0; j < array.length; j++) {
-       if(array[j] > array[i]) {
+       
+       if(array[i] < array[j]) {
         var aux = array[j];
          array[j] = array[i];
          array[i] = aux;
        }
      };
+     console.log(array)
     };
-    return array;
+   return array;
    };
-// if (min < array[j]) {
-//   let aux = array[j];
-//   array[j] = array[i+1];
-//   array[i+1] = aux;
-
 
 function selectionSort(array) {
   // Implementar el método conocido como selectionSort para ordenar de menor a mayor
@@ -96,12 +93,18 @@ function selectionSort(array) {
    2. Se evalua [1] < [0] si es true, se invierten, si es false se aumenta el punto de referencia [i++]
    3. se evalua [2] < [1] si es true, debe evaluar [2] hasta [0], si es false [i++] */
 
-  //  if(array[i+1] < array[i]) {
-  //   let aux = array[i];
-  //     array[i] = array[i+1];
-  //     array[i+1] = aux;
-  //  }
-
+   for (let i = 0; i < array.length - 1; i++) {
+    let lower = i;
+     for (let j = i+1; j < array.length; j++) {
+       if(array[lower] > array[j]) lower = j;
+      };
+       if(i !== lower){
+         var aux = array[i];
+         array[i] = array[lower];
+         array[lower] = aux;
+        };
+    };
+  return array;
 }
 
 
