@@ -49,7 +49,6 @@ class BinarySearchTree {
          if (!this.left) return false;
          else return this.left.contains(value);
       };
-
    };
 
    depthFirstForEach(cb, order){
@@ -98,6 +97,10 @@ class BinarySearchTree {
       }
    };
 }
+
+BinarySearchTree(10);
+BinarySearchTree.insert(2);
+BinarySearchTree.insert(3);
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

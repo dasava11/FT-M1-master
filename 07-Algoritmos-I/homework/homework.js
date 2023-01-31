@@ -16,26 +16,39 @@ function factorear(num) {
   // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
   // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
   // Tu código:
-  let array = [1];
-// let div =[2, 3, 5, 7, 11, 13];
- let i=2
-  //for (let i = 0; i < div.length; i++) {
-    //console.log(num, div[i], num/div[i]);
-    while (num !== 1) {
-      if(primo(i)){
-          if (num%i === 0) {
-            array.push(i)
-            num = num/i
-          } else {
-            i++;
-          };
-      }else{
-        i++;
-      };
-    };
-  
-return array;
+//   let array = [1];
+//   let i=2
 
+//     while (num !== 1) {
+//       if(primo(i)){
+//           if (num%i === 0) {
+//             array.push(i)
+//             num = num/i
+//           } else {
+//             i++;
+//           };
+//       }else{
+//         i++;
+//       };
+//     };
+  
+// return array;
+
+// EL RESUELTO EN CLASE
+//_____________________________
+
+let array = [1];
+let divisor = 2;
+
+while (num !== 1) {
+  if(num%divisor === 0) {
+    array.push(divisor);
+    num = num/divisor;
+  } else {
+    divisor++
+  }
+}
+return array;
 };
 
 function bubbleSort(array) {
@@ -44,16 +57,33 @@ function bubbleSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
- for (let j = array.length; j > 0; j--) {
-  for (let i = 0; i < j; i++) {
-    if (array[i] > array[i+1]) {
+//  for (let j = array.length; j > 0; j--) {
+//   for (let i = 0; i < j; i++) {
+//     if (array[i] > array[i+1]) {
+//       let aux = array[i];
+//       array[i] = array[i+1];
+//       array[i+1] = aux;
+//     };
+//   };
+//  };
+ //return array;
+
+// EL RESUELTO EN CLASE
+//_____________________________
+
+let flag = true;
+while (flag) {
+  flag = false;
+  for (let i = 0; i < array.length-1; i++) {
+     if (array[i] > array[i+1]) {
       let aux = array[i];
       array[i] = array[i+1];
       array[i+1] = aux;
+      flag = true;
     };
   };
- };
- return array;
+};
+return array;
 }
 
 function insertionSort(array) {
@@ -67,19 +97,29 @@ function insertionSort(array) {
    3. se invierten los [i] una vez se identifique el menor entre todos los [i]
    4. avanza [i++] y vuelve hacer la misma validación */
 
-   for (let i = 1; i < array.length; i++) {
-     
-     for (let j = 0; j < array.length; j++) {
-       
-       if(array[i] < array[j]) {
-        var aux = array[j];
-         array[j] = array[i];
-         array[i] = aux;
-       }
-     };
-     console.log(array)
-    };
-   return array;
+  //  for (let i = 1; i < array.length; i++) {
+  //    for (let j = 0; j < array.length; j++) {
+  //      if(array[i] < array[j]) {
+  //       var aux = array[j];
+  //        array[j] = array[i];
+  //        array[i] = aux;
+  //      }
+  //    };
+  //   };
+  //  return array;
+
+// EL RESUELTO EN CLASE
+//_____________________________
+
+      for (let i = 1; i < array.length; i++) {
+        let current = array[i];
+        let j;
+        for (j = i - 1; j >= 0 && array[j] > current; j--) {
+        array[j+1] = array[j];
+        }
+        array[j+1] = current;
+      }
+    return array;
    };
 
 function selectionSort(array) {
@@ -99,9 +139,10 @@ function selectionSort(array) {
        if(array[lower] > array[j]) lower = j;
       };
        if(i !== lower){
-         var aux = array[i];
-         array[i] = array[lower];
-         array[lower] = aux;
+        //  var aux = array[i];
+        //  array[i] = array[lower];
+        //  array[lower] = aux;
+         [array[i], array[lower]] = [array[lower], array[i]];
         };
     };
   return array;
