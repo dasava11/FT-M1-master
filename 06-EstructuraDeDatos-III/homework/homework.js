@@ -76,11 +76,11 @@ class BinarySearchTree {
       }
    };
 
-   breadthFirstForEach(cb, array = []){
+   breadthFirstForEach(cb, depth = []){
+      if(this.left) depth.push(this.left);
+      if(this.right) depth.push(this.right);
       cb(this.value);
-      if(this.right) array.push(this.right);
-      if(this.left) array.push(this.left);
-      if(array.length > 0) arr.shift().breadthFirstForEach(cb, array);
+      if(depth.length > 0) depth.shift().breadthFirstForEach(cb, depth);
    };
 
    size() {
@@ -98,9 +98,11 @@ class BinarySearchTree {
    };
 }
 
-BinarySearchTree(10);
-BinarySearchTree.insert(2);
-BinarySearchTree.insert(3);
+var arbol = new BinarySearchTree(10);
+arbol.insert(2);
+arbol.insert(3);
+arbol.insert(11);
+arbol.insert(19);
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
