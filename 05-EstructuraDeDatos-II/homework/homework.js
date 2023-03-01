@@ -20,6 +20,7 @@ function Node(value) {
   this.next = null;
 }
 
+
 //ADD
 LinkedList.prototype.add = function(value){
 let node = new Node(value);
@@ -102,7 +103,7 @@ var listOne = new LinkedList()
 
 listOne.add(1);
 listOne.add('dos');
-listOne.add('hola');
+listOne.add('hola'); 
 
 /* EJERCICIO 2
 Implementar la clase HashTable.

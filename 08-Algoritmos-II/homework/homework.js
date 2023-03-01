@@ -12,7 +12,7 @@ function quickSort(array) {
   let right = [];
   let equal = [];
 
-  if (array.length === 0 || array.length < 2) return array;
+  if (array.length <= 1) return array;
 
   for (let i = 0; i < array.length; i++) {
     if (array[i] < pivot) left.push(array[i]);
@@ -24,31 +24,30 @@ function quickSort(array) {
 
 //______fn de apoyo_________
 
-
  function divide(array) {
-
   let middle = Math.floor(array.length / 2);
-
   let left = array.slice(0, middle);
   let right = array.slice(middle);
-
   return [left, right];
-
  }
 
- function fusion(arr1, arr2){
-  let array = arr1.concat(arr2)
+ function fusion(left, right){
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let array = [];
 
-  for (let j = array.length; j > 0; j--) {
-    for (let i = 0; i < j; i++) {
-      if (array[i] > array[i+1]) {
-       [array[i], array[i+1]] = [array[i+1], array[i]];
-      };
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      array.push(left[leftIndex]);
+      leftIndex++
+    } else { 
+      array.push(right[rightIndex]);
+      rightIndex++
     };
-   };
-   return array;
+    return array.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  };
  };
-
+ 
  //_____________________________
 
 function mergeSort(array) {
@@ -56,16 +55,11 @@ function mergeSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-
   if (array.length === 1) return array;
-
   let div = divide(array);
   let left = div[0];
   let right = div[1];
-
   return fusion(mergeSort(left), mergeSort(right));
-
-  //okey probemos ahora
 };
 
 mergeSort([75, 11, 8, 23, 2, 9, 19, 35, 6, 1, 2, 47])

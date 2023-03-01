@@ -53,7 +53,17 @@ var countProps = function(obj) {
 
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
+    let acc = 0;
+    let current = this.head;
 
+    while (current) {
+        if(isNaN(Number(current.value))){
+            current.value = 'Kiricocho'
+            acc++
+        }
+        current = current.next;
+    };
+    return acc;
 }
 
 
